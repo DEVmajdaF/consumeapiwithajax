@@ -1,0 +1,85 @@
+﻿@model consumeapiwithajax.Models.Product;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@addTagHelper *, AuthoringTagHelpers
+
+
+
+<script src="~/js/jquery.min.js"></script>
+
+<form>
+
+    <div class="form-group">
+        <label asp-for="Id">Name</label>
+        <input asp-for="Id" type="text" class="form-control" id="Id">
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductName">Name</label>
+        <input asp-for="ProductName" type="text" class="form-control" id="ProductName">
+    </div>
+    <div class="form-group">
+        <label asp-for="price">Price</label>
+        <input asp-for="price" type="text" class="form-control" id="price">
+    </div>
+
+
+    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+div class="panel panel-primary">
+<div class="panel-heading">
+    Test Data from API
+</div>   <!--en dof panel-heading -->
+
+
+<div class="panel-body">
+    <table class="table table-bordered" id="Table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>price</th>
+
+        </tr>   <!--end of table-row -->
+    </table>   <!--end of table -->
+</div> <!--end of Panel-body -->
+</div> <!--end of Panel -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('submit').click(function () {
+            var product = {};
+            product.id = $('#id').val();
+            product.productName = $('#Productname').val();
+            product.price = $('#price').val();
+
+            $.ajax({
+
+                url: 'https://localhost:44384/api/Products/postdata',
+                method: "POST",
+                contentType: 'apllication/json;charset=utf-8',
+                data: JSON.stringify(Product),
+                success: function (data) {
+                    window.alert(data);
+                },
+                error: function (err) {
+                    alert(err);
+                }
+
+            })
+
+
+
+        });
+
+    });
+
+
+
+    //Get
+
+
+</script>
+
