@@ -48,14 +48,15 @@ namespace consumeapiwithajax.Controllers
             return productList().Where(x => x.Id == prodID).SingleOrDefault();
         }
 
-      
-        //[HttpPost]
-        //public Product postdata([FromBody] Product p)
-        //{
-           
-        //    prod.Add(p);
-        //    return p;
-        //}
+
+        [HttpPost]
+        [Route("/")]
+        public Product postdata([FromBody] Product p)
+        {
+
+            prod.Add(p);
+            return p;
+        }
 
 
 

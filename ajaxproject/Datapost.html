@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+
+
+    <!--<script src="~/js/jquery.min.js"></script>-->
+    <script src="C:\Users\youcode\Desktop\Api\consumeapiwithajax\ajaxproject\wwwroot\js\jquery.min.js"></script>
+    <form method="post">
+
+        <div class="form-group">
+            <label asp-for="Id">Name</label>
+            <input asp-for="Id" name="id" type="text" class="form-control" id="Id">
+        </div>
+        <div class="form-group">
+            <label asp-for="ProductName">Name</label>
+            <input asp-for="ProductName" name="ProductName" type="text" class="form-control" id="ProductName">
+        </div>
+        <div class="form-group">
+            <label asp-for="price">Price</label>
+            <input asp-for="price" name="price" type="text" class="form-control" id="price">
+        </div>
+
+
+        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+    div class="panel panel-primary">
+    <div class="panel-heading">
+        Test Data from API
+    </div>   <!--en dof panel-heading -->
+
+
+    <div class="panel-body">
+        <table class="table table-bordered" id="Table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>price</th>
+
+            </tr>  
+        </table>  
+    </div> 
+ 
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('submit').click(function () {
+         
+            var id = $('#Id').val();
+            var productName = $('#Productname').val();
+            var price = $('#price').val();
+            var product = { id: id, productName: productName, price=price };
+
+            $.ajax({
+
+                url: 'https://localhost:44384/api/Products',
+                method: "POST",
+                contentType: 'apllication/json;charset=utf-8',
+                data: JSON.stringify(product),
+                success: function (data) {
+                    window.alert(data);
+                },
+                error: function (err) {
+                    alert(err);
+                    Console.log(err)
+                }
+
+            })
+
+
+
+        });
+
+    });
+
+
+
+    //Get
+
+
+    </script>
+
+
+</body>
+</html>
